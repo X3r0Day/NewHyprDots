@@ -1,0 +1,227 @@
+/* -----------------------------------------------------------------------------
+ * GLOBAL RESET & FONT
+ * -------------------------------------------------------------------------- */
+* {
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: bold;
+}
+
+/* The invisible container wrapper */
+.control-center {
+    background: transparent;
+}
+
+/* -----------------------------------------------------------------------------
+ * THE MAIN CRYSTAL PANEL (Background)
+ * -------------------------------------------------------------------------- */
+.control-center-list {
+    /* Mist & Steel Background: Dark Gunmetal with 70% opacity */
+    background: rgba(18, 20, 23, 0.75);
+    
+    /* The "Crystal" Edge: Subtle white border */
+    border: 1px solid rgba(255, 255, 255, 0.15); 
+    border-radius: 24px;
+    
+    /* Deep Shadow for floating effect */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6); 
+    
+    margin: 10px;
+    padding: 15px;
+}
+
+/* -----------------------------------------------------------------------------
+ * MUSIC PLAYER WITH WAVE VISUALIZER
+ * -------------------------------------------------------------------------- */
+.widget-mpris {
+    /* Base color */
+    background-color: #1a1d23;
+    
+    /* 
+       THE WAVE VISUALIZER 
+       Two radial gradients that shift positions to mimic flowing mist/waves.
+       1. Ice Blue (Bottom Left)
+       2. Purple (Top Right)
+    */
+    background-image: 
+        radial-gradient(farthest-corner at 0% 100%, rgba(97, 175, 239, 0.25) 0%, transparent 60%),
+        radial-gradient(farthest-corner at 100% 0%, rgba(198, 120, 221, 0.2) 0%, transparent 60%);
+        
+    background-size: 200% 200%;
+    animation: wave_flow 8s ease-in-out infinite alternate;
+    
+    border-radius: 16px;
+    padding: 16px;
+    margin: 10px 0;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #dcdfe4;
+}
+
+/* Album Art - Pop out effect */
+.widget-mpris-album-art {
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* Song Title */
+.widget-mpris-title {
+    font-size: 1.1rem;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+
+/* Artist Name */
+.widget-mpris-subtitle {
+    font-size: 0.9rem;
+    color: #61afef; /* Ice Blue */
+    text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+}
+
+/* --- Player Controls --- */
+.widget-mpris-player > button {
+    background: rgba(0, 0, 0, 0.2);
+    color: #dcdfe4;
+    border-radius: 50%;
+    margin: 0 8px;
+    padding: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.2s ease;
+}
+
+.widget-mpris-player > button:hover {
+    background: #61afef; /* Active Blue */
+    color: #121417;
+    box-shadow: 0 0 15px rgba(97, 175, 239, 0.6);
+    transform: scale(1.1);
+}
+
+/* --- Progress Bar --- */
+/* The Background Track */
+.widget-mpris > box > scale trough {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    min-height: 6px;
+    margin-top: 10px;
+}
+
+/* The Filled Bar (Gradient) */
+.widget-mpris > box > scale highlight {
+    background-image: linear-gradient(90deg, #61afef, #98c379); /* Blue to Sage Green */
+    border-radius: 10px;
+    min-height: 6px;
+    box-shadow: 0 0 10px rgba(97, 175, 239, 0.5);
+}
+
+/* The Slider Knob */
+.widget-mpris > box > scale slider {
+    background-color: #ffffff;
+    min-height: 12px;
+    min-width: 12px;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    margin: -3px;
+}
+
+/* -----------------------------------------------------------------------------
+ * NOTIFICATIONS (Glass Cards)
+ * -------------------------------------------------------------------------- */
+.notification-row {
+    margin: 10px 0;
+    outline: none;
+}
+
+.notification {
+    background: rgba(41, 44, 47, 0.6); /* Semi-transparent Card */
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    margin-bottom: 8px;
+    padding: 5px;
+}
+
+.notification-content {
+    padding: 10px;
+}
+
+.notification-header {
+    color: #61afef; /* Ice Blue Header */
+    font-size: 14px;
+}
+
+.summary {
+    color: #fff;
+}
+
+.body {
+    color: #a0a9b0;
+}
+
+/* Critical Notifications (Red Glass) */
+.notification.critical {
+    background: rgba(224, 108, 117, 0.2);
+    border: 1px solid #e06c75;
+}
+
+/* -----------------------------------------------------------------------------
+ * HEADER & BUTTONS (Clear All, etc)
+ * -------------------------------------------------------------------------- */
+.widget-title {
+    color: #fff;
+    font-size: 1.4rem;
+    margin: 10px 0 20px 5px;
+}
+
+.widget-title > button {
+    background: rgba(255,255,255,0.08);
+    color: #dcdfe4;
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-size: 12px;
+}
+
+.widget-title > button:hover {
+    background: #e06c75; /* Red on hover */
+    color: #fff;
+    border-color: #e06c75;
+}
+
+/* -----------------------------------------------------------------------------
+ * DND (Do Not Disturb) SWITCH
+ * -------------------------------------------------------------------------- */
+.widget-dnd {
+    background: rgba(41, 44, 47, 0.5);
+    border-radius: 12px;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.widget-dnd > switch {
+    background: rgba(0,0,0,0.3);
+    border-radius: 10px;
+}
+
+.widget-dnd > switch:checked {
+    background: #61afef; /* Ice Blue when active */
+}
+
+.widget-dnd > switch slider {
+    background: #fff;
+    border-radius: 50%;
+}
+
+/* -----------------------------------------------------------------------------
+ * ANIMATION KEYFRAMES
+ * -------------------------------------------------------------------------- */
+@keyframes wave_flow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}

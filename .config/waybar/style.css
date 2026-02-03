@@ -1,0 +1,202 @@
+/* -----------------------------------------------------------------------------
+ * GLOBAL STYLES
+ * -------------------------------------------------------------------------- */
+
+* {
+    font-family: "JetBrainsMono Nerd Font", "Symbols Nerd Font", "FontAwesome", "Roboto", sans-serif;
+    font-weight: bold;
+    font-size: 11px;
+    min-height: 0;
+    border: none;
+    border-radius: 0;
+}
+
+window#waybar {
+    background: transparent;
+    color: #cdd6f4;
+}
+
+tooltip {
+    background: #1e1e2e;
+    border: 1px solid #cba6f7;
+    border-radius: 10px;
+}
+
+tooltip label {
+    color: #cdd6f4;
+}
+
+/* -----------------------------------------------------------------------------
+ * WORKSPACES
+ * -------------------------------------------------------------------------- */
+
+#workspaces {
+    background: #11111b;
+    margin: 5px;
+    padding: 0px 5px;
+    border-radius: 12px;
+    border: 1px solid #45475a;
+}
+
+#workspaces button {
+    padding: 0px 8px;
+    margin: 4px 2px;
+    border-radius: 10px;
+    color: #a6adc8;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+#workspaces button.active {
+    background: #cba6f7;
+    color: #11111b;
+    min-width: 30px;
+}
+
+#workspaces button:hover {
+    background: #b4befe;
+    color: #11111b;
+    box-shadow: 0 0 5px rgba(180, 190, 254, 0.5);
+}
+
+/* -----------------------------------------------------------------------------
+ * WINDOW TITLE
+ * -------------------------------------------------------------------------- */
+
+#window {
+    margin: 5px;
+    padding: 0px 10px;
+    background: #11111b;
+    border-radius: 12px;
+    border: 1px solid #45475a;
+    color: #bac2de;
+}
+
+/* -----------------------------------------------------------------------------
+ * MODULE GROUPS
+ * -------------------------------------------------------------------------- */
+
+#motherboard, #laptop, #audio, #connection, #group-tray-drawer {
+    background: #11111b;
+    margin: 5px 3px;
+    padding: 0px 5px;
+    border-radius: 12px;
+    border: 1px solid #45475a;
+}
+
+/* -----------------------------------------------------------------------------
+ * INDIVIDUAL MODULES
+ * -------------------------------------------------------------------------- */
+
+#cpu, #memory, #disk, 
+#backlight, #battery, 
+#pulseaudio, #idle_inhibitor, 
+#network, #bluetooth,
+#clock, #custom-power, #custom-notification, #tray, #custom-tray-icon {
+    padding: 0 8px;
+    margin: 4px 0;
+}
+
+/* -- Tray Handle Icon -- */
+#custom-tray-icon {
+    color: #cba6f7;
+    padding: 0 10px;
+    font-size: 14px;
+}
+
+/* -- The Tray Itself (Hidden content) -- */
+#tray {
+    padding: 0px 5px;
+}
+
+.tray-content {
+    background: #11111b;
+    padding-left: 5px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: none;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: #f38ba8;
+}
+
+/* -- Motherboard Group Colors -- */
+#cpu { color: #f38ba8; }
+#memory { color: #fab387; }
+#disk { color: #f9e2af; }
+
+/* -- Laptop Group Colors -- */
+#backlight { color: #f9e2af; }
+#battery { color: #a6e3a1; }
+
+#battery.warning { color: #fab387; }
+#battery.critical { 
+    color: #f38ba8; 
+    animation-name: blink; 
+    animation-duration: 0.5s; 
+    animation-iteration-count: infinite; 
+    animation-direction: alternate;
+}
+
+/* -- Audio Group Colors -- */
+#idle_inhibitor { color: #f5c2e7; }
+#pulseaudio { color: #89b4fa; }
+#pulseaudio.muted { color: #9399b2; }
+
+/* -- Connection Group Colors -- */
+#network { color: #a6e3a1; }
+#bluetooth { color: #89b4fa; }
+
+/* -- Clock -- */
+#clock {
+    background: #11111b;
+    color: #cba6f7;
+    margin: 5px;
+    padding: 0 12px;
+    border-radius: 12px;
+    border: 1px solid #45475a;
+    font-weight: 800;
+}
+
+#clock:hover {
+    background: #cba6f7;
+    color: #11111b;
+}
+
+/* -- Power Button (Perfect Circle) -- */
+#custom-power {
+    background: #1e1e2e;
+    color: #f38ba8;
+    margin: 0px;
+    margin-right: 7px;
+    
+    /* Force Circle Shape */
+    border-radius: 100%;
+    min-width: 25px;
+
+    padding: 0px 7.9px 0px 5px;
+    
+    border: 0px solid #f38ba8;
+    font-size: 16px;
+}
+
+#custom-power:hover {
+    background: #f38ba8;
+    color: #11111b;
+}
+
+/* -- Notification Button -- */
+#custom-notification {
+    color: #f5c2e7; 
+    padding-right: 12px;
+}
+
+@keyframes blink {
+    to {
+        background-color: #f38ba8;
+        color: #181825;
+    }
+}

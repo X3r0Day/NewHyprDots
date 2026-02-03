@@ -1,0 +1,6 @@
+[color]
+gradient = 1
+gradient_count = 3
+gradient_color_1 = '#89b4fa' # Blue
+gradient_color_2 = '#cba6f7' # Pink
+gradient_color_3 = '#a6e3a1' # Green

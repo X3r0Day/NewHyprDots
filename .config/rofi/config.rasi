@@ -1,0 +1,56 @@
+configuration {
+    modi: "drun";
+    font: "JetBrainsMono Nerd Font 12";
+    show-icons: true;
+    icon-theme: "Papirus-Dark"; /* Make sure you have an icon theme */
+}
+
+@theme "/dev/null"
+
+* {
+    bg: #11111b;
+    bg-alt: #1e1e2e;
+    fg: #cdd6f4;
+    accent: #a6e3a1; /* Green Accent */
+    
+    background-color: transparent;
+    text-color: @fg;
+}
+
+window {
+    width: 600px;
+    background-color: #11111bcc; /* Dark with transparency */
+    border: 2px;
+    border-color: @accent;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+inputbar {
+    children: [prompt, entry];
+    background-color: @bg-alt;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+prompt {
+    padding: 0 10px 0 0;
+    color: @accent;
+}
+
+listview {
+    lines: 8;
+    columns: 1;
+    scrollbar: false;
+}
+
+element {
+    padding: 10px;
+    border-radius: 8px;
+}
+
+element selected {
+    background-color: @accent;
+    text-color: #11111b; /* Dark text on selection */
+}
