@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Startpage</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    
+    <div class="scanlines"></div>
+
+    <div class="container">
+        
+        <!-- Left Side: Character Art & Sys Info -->
+        <div class="card profile-card">
+            <div class="ascii-art">
+                <!-- ID added here for animation -->
+                <pre id="ascii-cat">
+   /\_/\  
+  ( o.o ) 
+   > ^ <  
+  /     \ 
+ (       )___
+                </pre>
+            </div>
+            
+            <div class="sys-info">
+                <div class="info-row">
+                    <span class="key">os</span>
+                    <span class="val">Arch Linux</span>
+                </div>
+                <div class="info-row">
+                    <span class="key">wm</span>
+                    <span class="val">hyprland</span>
+                </div>
+                <div class="info-row">
+                    <span class="key">sh</span>
+                    <span class="val">fish</span>
+                </div>
+                <div class="info-row">
+                    <span class="key">up</span>
+                    <span class="val">1h 12m</span>
+                </div>
+                
+                <div class="visualizer">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side: Clock, Search, Links -->
+        <div class="card main-card">
+            
+            <div class="clock-container">
+                <h1 id="time">00:00</h1>
+                <h2 id="date">LOADING...</h2>
+            </div>
+
+            <div class="search-container">
+                <span class="prompt">~ ❯</span>
+                <input type="text" id="search" placeholder="search..." autofocus autocomplete="off">
+            </div>
+
+            <div class="links-container">
+                <div class="link-group">
+                    <h3>/DEV</h3>
+                    <a href="https://github.com/X3r0Day">GitHub</a>
+                    <a href="https://localhost:8080">LocalHost</a>
+                    <a href="https://wiki.archlinux.org">ArchWiki</a>
+                </div>
+                
+                <div class="link-group">
+                    <h3>/SOCIAL</h3>
+                    <a href="https://web.whatsapp.com">WhatsApp</a>
+                    <a href="https://discord.com/app">Discord</a>
+                    <a href="https://youtube.com">YouTube</a>
+                </div>
+
+                <div class="link-group">
+                    <h3>/MEDIA</h3>
+                    <a href="https://music.youtube.com">Music</a>
+                    <a href="https://twitch.tv">Twitch</a>
+                    <a href="https://netflix.com">Netflix</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- Clock Logic ---
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' });
+            const dateString = now.toLocaleDateString('en-US', { weekday: 'long', day: 'numeric', month: 'short' });
+            
+            document.getElementById('time').innerText = timeString;
+            document.getElementById('date').innerText = dateString.toUpperCase();
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // --- Search Logic ---
+        const searchInput = document.getElementById('search');
+        searchInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                const query = searchInput.value;
+                window.location.href = `https://www.google.com/search?q=${query}`;
+            }
+        });
+
+        // --- Cat Animation Logic ---
+        const catElement = document.getElementById('ascii-cat');
+        let frameIndex = 0;
+
+        // Frames for Tail Wagging (3 stages)
+        const frames = [
+`   /\\_/\\  
+  ( o.o ) 
+   > ^ <  
+  /     \\ 
+ (       )___`, 
+
+`   /\\_/\\  
+  ( o.o ) 
+   > ^ <  
+  /     \\ 
+ (       )__/`,
+
+`   /\\_/\\  
+  ( o.o ) 
+   > ^ <  
+  /     \\ 
+ (       )_/ ` 
+        ];
+
+        // Frames for Blinking (Eyes closed)
+        const blinkFrame = 
+`   /\\_/\\  
+  ( -.- ) 
+   > ^ <  
+  /     \\ 
+ (       )___`;
+
+        function animateCat() {
+            // Random chance to blink every cycle
+            const isBlinking = Math.random() > 0.90; 
+
+            if (isBlinking) {
+                catElement.innerText = blinkFrame;
+            } else {
+                catElement.innerText = frames[frameIndex];
+                // Cycle tail frames: 0 -> 1 -> 2 -> 1 -> 0 ...
+                if (frameIndex === 0) step = 1;
+                if (frameIndex === 2) step = -1;
+                frameIndex += step;
+            }
+        }
+
+        let step = 1;
+        setInterval(animateCat, 350); // Speed of animation (lower is faster)
+
+    </script>
+</body>
+</html>

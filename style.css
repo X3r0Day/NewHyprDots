@@ -1,0 +1,280 @@
+/* -----------------------------------------------------------------------------
+ * THEME VARIABLES
+ * -------------------------------------------------------------------------- */
+:root {
+    --bg: #11111b;
+    --card-bg: rgba(30, 30, 46, 0.6);
+    --text: #cdd6f4;
+    --subtext: #a6adc8;
+    
+    --green: #a6e3a1;
+    --blue: #89b4fa;
+    --pink: #f5c2e7;
+    --red: #f38ba8;
+    --lavender: #b4befe;
+    
+    --font-main: 'JetBrainsMono Nerd Font', monospace;
+}
+
+/* -----------------------------------------------------------------------------
+ * GLOBAL RESET
+ * -------------------------------------------------------------------------- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-main);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* -----------------------------------------------------------------------------
+ * BACKGROUND EFFECTS (Scanlines)
+ * -------------------------------------------------------------------------- */
+.scanlines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0),
+        rgba(255,255,255,0) 50%,
+        rgba(0,0,0,0.1) 50%,
+        rgba(0,0,0,0.1)
+    );
+    background-size: 100% 4px;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+/* -----------------------------------------------------------------------------
+ * LAYOUT CONTAINER
+ * -------------------------------------------------------------------------- */
+.container {
+    display: flex;
+    gap: 20px;
+    z-index: 1;
+    animation: fade-in 1s ease-out;
+}
+
+/* Glass Card Base Style */
+.card {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* -----------------------------------------------------------------------------
+ * LEFT SIDE: PROFILE & FETCH
+ * -------------------------------------------------------------------------- */
+.profile-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 280px;
+    text-align: left;
+}
+
+.ascii-art {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.ascii-art pre {
+    font-family: var(--font-main);
+    font-size: 14px;
+    font-weight: bold;
+    /* Gradient Text for Art */
+    background: linear-gradient(135deg, var(--blue), var(--pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.4;
+    
+    /* STABILITY FIX: Prevents jitter during animation */
+    white-space: pre;
+    min-width: 140px;
+    min-height: 100px;
+}
+
+.sys-info {
+    margin-top: 20px;
+    font-size: 13px;
+}
+
+.info-row {
+    margin-bottom: 8px;
+    display: flex;
+    gap: 10px;
+}
+
+.key {
+    color: var(--green);
+    font-weight: bold;
+    width: 30px;
+}
+
+.val {
+    color: var(--subtext);
+}
+
+/* Mini Visualizer Animation */
+.visualizer {
+    display: flex;
+    gap: 4px;
+    margin-top: 20px;
+    height: 20px;
+    align-items: flex-end;
+}
+
+.bar {
+    width: 6px;
+    background: var(--blue);
+    border-radius: 2px;
+    animation: bounce 1s infinite ease-in-out;
+}
+
+.bar:nth-child(1) { animation-delay: 0.0s; height: 40%; background: var(--blue); }
+.bar:nth-child(2) { animation-delay: 0.2s; height: 70%; background: var(--pink); }
+.bar:nth-child(3) { animation-delay: 0.4s; height: 100%; background: var(--green); }
+.bar:nth-child(4) { animation-delay: 0.1s; height: 60%; background: var(--blue); }
+.bar:nth-child(5) { animation-delay: 0.3s; height: 50%; background: var(--lavender); }
+
+/* -----------------------------------------------------------------------------
+ * RIGHT SIDE: MAIN HUD
+ * -------------------------------------------------------------------------- */
+.main-card {
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Clock */
+.clock-container {
+    margin-bottom: 40px;
+}
+
+#time {
+    font-size: 5rem;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1;
+    text-shadow: 0 0 20px rgba(205, 214, 244, 0.1);
+}
+
+#date {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: var(--green);
+    letter-spacing: 2px;
+    margin-top: 10px;
+}
+
+/* Search Bar */
+.search-container {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+    transition: all 0.3s ease;
+}
+
+.search-container:focus-within {
+    border-color: var(--green);
+    box-shadow: 0 0 15px rgba(166, 227, 161, 0.2);
+    transform: scale(1.01);
+}
+
+.prompt {
+    color: var(--green);
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+#search {
+    background: transparent;
+    border: none;
+    color: var(--text);
+    font-family: var(--font-main);
+    font-size: 1.1rem;
+    width: 100%;
+    outline: none;
+}
+
+/* Links Grid */
+.links-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.link-group h3 {
+    color: var(--pink);
+    font-size: 0.8rem;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.8;
+}
+
+.link-group a {
+    display: block;
+    color: var(--subtext);
+    text-decoration: none;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    position: relative;
+    padding-left: 0;
+}
+
+.link-group a:hover {
+    color: var(--blue);
+    padding-left: 10px; /* Slide effect */
+    text-shadow: 0 0 10px rgba(137, 180, 250, 0.4);
+}
+
+.link-group a:before {
+    content: '>';
+    position: absolute;
+    left: 0;
+    opacity: 0;
+    color: var(--green);
+    transition: all 0.2s ease;
+}
+
+.link-group a:hover:before {
+    opacity: 1;
+}
+
+/* -----------------------------------------------------------------------------
+ * KEYFRAMES
+ * -------------------------------------------------------------------------- */
+@keyframes fade-in {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(1.5); }
+}
